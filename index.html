@@ -1063,13 +1063,9 @@ async function loadData() {
       }
     });
 
-    // === DEBUG: 印出前3個測站的 weather_elements，協助排查 vis/uv ===
-    const debugStations = Object.values(allStations).slice(0, 3);
-    debugStations.forEach(s => {
-      const we = s.weather_elements || {};
-      console.log(`[DEBUG] ${s.station_name} weather_elements keys:`, Object.keys(we));
-      console.log(`[DEBUG] ${s.station_name} vis=${we.vis}, visibility=${we.visibility}, uv=${we.uv}`);
-    });
+    // === DEBUG: 印出第一個測站的完整 weather_elements ===
+    const _ds = Object.values(allStations)[0];
+    if (_ds) console.log(`[DEBUG] ${_ds.station_name} weather_elements:`, JSON.stringify(_ds.weather_elements, null, 2));
     // === END DEBUG ===
 
     renderMap();
